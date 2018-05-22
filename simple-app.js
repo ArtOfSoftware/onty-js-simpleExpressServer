@@ -7,30 +7,30 @@ var logger = require('morgan');
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 
-var app = express();
+var simpleApp = express();
 
 console.log("### App begins...");
 
 // view engine setup
-app.set('views', path.join(__dirname, 'views'));
-app.set('view engine', 'pug');
+simpleApp.set('views', path.join(__dirname, 'views'));
+simpleApp.set('view engine', 'pug');
 
-app.use(logger('dev'));
-app.use(express.json());
-app.use(express.urlencoded({ extended: false }));
-app.use(cookieParser());
-app.use(express.static(path.join(__dirname, 'public')));
+simpleApp.use(logger('dev'));
+simpleApp.use(express.json());
+simpleApp.use(express.urlencoded({ extended: false }));
+simpleApp.use(cookieParser());
+simpleApp.use(express.static(path.join(__dirname, 'public')));
 
-app.use('/', indexRouter);
-app.use('/users', usersRouter);
+simpleApp.use('/', indexRouter);
+simpleApp.use('/users', usersRouter);
 
 // catch 404 and forward to error handler
-app.use(function(req, res, next) {
+simpleApp.use(function( req, res, next) {
   next(createError(404));
 });
 
 // error handler
-app.use(function(err, req, res, next) {
+simpleApp.use(function( err, req, res, next) {
   // set locals, only providing error in development
   res.locals.message = err.message;
   res.locals.error = req.app.get('env') === 'development' ? err : {};
@@ -40,6 +40,6 @@ app.use(function(err, req, res, next) {
   res.render('error');
 });
 
-module.exports = app;
+module.exports = simpleApp;
 
 console.log("### App done");
