@@ -59,3 +59,9 @@ typings/
 
 # next.js build output
 .next
+
+# Macintosh specific
+.DS_Store
+
+# npm package lock
+package-lock.json
